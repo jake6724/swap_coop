@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://iu2ewhbmxbor"]
+
+[ext_resource type="PackedScene" uid="uid://b6onryltdkc5y" path="res://scenes/MultiplayerMenu.tscn" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://yjw1ci4sxu5q" path="res://scripts/game_manager.gd" id="2_0bbpv"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("multiplayer_menu")]
+script = ExtResource("2_0bbpv")
+multiplayer_menu = NodePath("../CanvasLayer/MultiplayerMenu")
+metadata/_custom_type_script = "uid://yjw1ci4sxu5q"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MultiplayerMenu" parent="CanvasLayer" instance=ExtResource("1_rvslj")]
+
+[node name="FighterSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://b8idrlblbxcxq")
+spawn_path = NodePath("../FighterParent")
+spawn_limit = 2
+
+[node name="FighterParent" type="Node2D" parent="."]
+position = Vector2(968, 514)

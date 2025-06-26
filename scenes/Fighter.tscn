@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8idrlblbxcxq"]
+
+[ext_resource type="Texture2D" uid="uid://2lbn3fpxs7h0" path="res://assets/fighter_temp.png" id="1_5kbbp"]
+[ext_resource type="Script" path="res://scripts/fighter.gd" id="2_qf0i6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qf0i6"]
+radius = 32.0
+height = 64.0
+
+[node name="Fighter" type="CharacterBody2D"]
+script = ExtResource("2_qf0i6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5kbbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qf0i6")
