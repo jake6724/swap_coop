@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8idrlblbxcxq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8idrlblbxcxq"]
 
 [ext_resource type="Texture2D" uid="uid://2lbn3fpxs7h0" path="res://assets/fighter_temp.png" id="1_5kbbp"]
-[ext_resource type="Script" path="res://scripts/fighter.gd" id="2_qf0i6"]
+[ext_resource type="Script" uid="uid://f35i11w8l8ck" path="res://scripts/fighter.gd" id="2_qf0i6"]
+[ext_resource type="Script" uid="uid://4dcajp53mign" path="res://scripts/multiplayer_input.gd" id="2_un5nr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_un5nr"]
+properties/0/path = NodePath(".:fighter_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stky8"]
+properties/0/path = NodePath("InputSynchronizer:input_direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qf0i6"]
 radius = 32.0
@@ -9,6 +20,13 @@ height = 64.0
 
 [node name="Fighter" type="CharacterBody2D"]
 script = ExtResource("2_qf0i6")
+
+[node name="FighterSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_un5nr")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_stky8")
+script = ExtResource("2_un5nr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5kbbp")
