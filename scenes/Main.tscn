@@ -1,14 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://iu2ewhbmxbor"]
+[gd_scene load_steps=10 format=3 uid="uid://iu2ewhbmxbor"]
 
+[ext_resource type="Script" uid="uid://cjjcl2emej1hm" path="res://scripts/main.gd" id="1_rarhs"]
 [ext_resource type="PackedScene" uid="uid://b6onryltdkc5y" path="res://scenes/MultiplayerMenu.tscn" id="1_rvslj"]
 [ext_resource type="Script" uid="uid://yjw1ci4sxu5q" path="res://scripts/game_manager.gd" id="2_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://wtsdb3i2c476" path="res://scenes/Arena.tscn" id="3_0bbpv"]
+[ext_resource type="Texture2D" uid="uid://c2n6h4yjbs42n" path="res://assets/background.png" id="4_q8u5g"]
+[ext_resource type="PackedScene" uid="uid://deaiqm1uvalkc" path="res://scenes/Placeholders/Placeholder64.tscn" id="5_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://btton1uy0saaw" path="res://scenes/Placeholders/Placeholder.tscn" id="6_jlsqs"]
+[ext_resource type="PackedScene" uid="uid://tdmislgjkg3n" path="res://scenes/Placeholders/Placeholder2.tscn" id="7_q8u5g"]
+[ext_resource type="PackedScene" uid="uid://cj5jbwxdtkljo" path="res://scenes/Placeholders/Placeholder3.tscn" id="8_lhr70"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_rarhs")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("multiplayer_menu")]
 script = ExtResource("2_0bbpv")
 multiplayer_menu = NodePath("../CanvasLayer/MultiplayerMenu")
 metadata/_custom_type_script = "uid://yjw1ci4sxu5q"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -999
+z_as_relative = false
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 1918.0
+offset_bottom = 1078.0
+mouse_filter = 2
+texture = ExtResource("4_q8u5g")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -21,3 +39,18 @@ spawn_limit = 2
 
 [node name="FighterParent" type="Node2D" parent="."]
 position = Vector2(968, 514)
+
+[node name="Arena" parent="." instance=ExtResource("3_0bbpv")]
+position = Vector2(995, 1106)
+
+[node name="Placeholder64" parent="." instance=ExtResource("5_vcsgt")]
+position = Vector2(450, 494)
+
+[node name="Placeholder3" parent="." instance=ExtResource("8_lhr70")]
+position = Vector2(1035, 297)
+
+[node name="Placeholder2" parent="." instance=ExtResource("7_q8u5g")]
+position = Vector2(1220, 432)
+
+[node name="Placeholder" parent="." instance=ExtResource("6_jlsqs")]
+position = Vector2(805, 316)

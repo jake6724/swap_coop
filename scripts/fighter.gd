@@ -1,25 +1,41 @@
 class_name Fighter
 extends CharacterBody2D
 
-@export var fighter_id: int # MUST be set by the multiplayer manager (order of this might need to change)
+@export var fighter_id :=1:
+	set(id):
+		fighter_id = id
+		%InputSynchronizer.set_multiplayer_authority(id) # Give client authority over InputSynchronizer
 
-@onready var input_sychronizer: MultiplayerSynchronizer = $InputSynchronizer
+# Replicated vars
+@export var do_jump: bool = false
+@export var direction: float
 
-var direction: float
-var speed: float = 200
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var speed: float = 200.0
+var jump_velocity: float = 500.0
 
 func _ready():
-	input_sychronizer.set_multiplayer_authority(fighter_id)
+	pass
 
 func apply_movement_from_input(delta):
-	direction = input_sychronizer.input_direction
-	print(direction)
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta # Change this to have a max later
+
+	# Set x-axis velocity
+	direction = %InputSynchronizer.input_direction
 	if direction > 0.0:
 		velocity.x = speed
 	elif direction < 0.0:
 		velocity.x = -speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+
+	# Jump
+	# if do_jump and is_on_floor():
+	if do_jump:
+		velocity.y = -jump_velocity
+		do_jump = false
 
 	move_and_slide()
 

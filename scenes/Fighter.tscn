@@ -1,13 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8idrlblbxcxq"]
 
-[ext_resource type="Texture2D" uid="uid://2lbn3fpxs7h0" path="res://assets/fighter_temp.png" id="1_5kbbp"]
 [ext_resource type="Script" uid="uid://f35i11w8l8ck" path="res://scripts/fighter.gd" id="2_qf0i6"]
 [ext_resource type="Script" uid="uid://4dcajp53mign" path="res://scripts/multiplayer_input.gd" id="2_un5nr"]
+[ext_resource type="Texture2D" uid="uid://25qfrjo8dvvq" path="res://assets/place_holder_64.png" id="3_un5nr"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_un5nr"]
 properties/0/path = NodePath(".:fighter_id")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:do_jump")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_stky8"]
 properties/0/path = NodePath("InputSynchronizer:input_direction")
@@ -25,11 +31,13 @@ script = ExtResource("2_qf0i6")
 replication_config = SubResource("SceneReplicationConfig_un5nr")
 
 [node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_stky8")
 script = ExtResource("2_un5nr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5kbbp")
+texture_filter = 1
+texture = ExtResource("3_un5nr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qf0i6")

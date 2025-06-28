@@ -15,7 +15,6 @@ func become_host() -> int:
 	server_peer.create_server(server_port)
 	multiplayer.multiplayer_peer = server_peer
 	Logger.log("Host server created")
-	# spawn_player()
 
 	# Signals
 	multiplayer.peer_connected.connect(spawn_player)
@@ -29,16 +28,16 @@ func join_as_player_2() -> int:
 	client_peer.create_client(server_ip, server_port)
 	multiplayer.multiplayer_peer = client_peer # IMPORTANT
 	Logger.log("Joined as player 2 client")
-	# spawn_player()
 	return 0
 
+## This function should be connected to 'multiplayer.peer_connected's callback so as clients are added, players
+## are spawned. Host must call this manually, as multiplayer.peer_connected will not trigger for server creation.
 func spawn_player(id: int):
 	var new_fighter = fighter_scene.instantiate()
 	new_fighter.fighter_id = id
 	new_fighter.name = str(id)
-	fighter_parent.add_child(new_fighter)
+	fighter_parent.add_child(new_fighter, true)
 	Logger.log("New fighter spwaned")
 
-	
 func set_server_ip(new_ip):
 	server_ip = new_ip

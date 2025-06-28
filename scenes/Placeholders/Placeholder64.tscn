@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deaiqm1uvalkc"]
+
+[ext_resource type="Texture2D" uid="uid://25qfrjo8dvvq" path="res://assets/place_holder_64.png" id="1_mev3v"]
+
+[node name="Placeholder64" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_mev3v")
