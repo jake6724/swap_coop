@@ -1,5 +1,8 @@
 class_name Fighter
-extends CharacterBody2D
+extends Player
+
+# Child nodes
+@onready var ap: AnimationPlayer = $AnimationPlayer
 
 @export var fighter_id :=1:
 	set(id):
@@ -14,8 +17,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var speed: float = 200.0
 var jump_velocity: float = 500.0
 
-func _ready():
-	pass
+# Uses the ready function in parent 'player' for now...
 
 func apply_movement_from_input(delta):
 	# Apply gravity
@@ -24,6 +26,7 @@ func apply_movement_from_input(delta):
 
 	# Set x-axis velocity
 	direction = %InputSynchronizer.input_direction
+	# direction = Input.get_axis("move_left", "move_right")
 	if direction > 0.0:
 		velocity.x = speed
 	elif direction < 0.0:
@@ -42,3 +45,5 @@ func apply_movement_from_input(delta):
 func _physics_process(delta):
 	if multiplayer.is_server():
 		apply_movement_from_input(delta)
+
+

@@ -19,6 +19,7 @@ multiplayer_menu = NodePath("../CanvasLayer/MultiplayerMenu")
 metadata/_custom_type_script = "uid://yjw1ci4sxu5q"
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 z_index = -999
 z_as_relative = false
 offset_left = -2.0

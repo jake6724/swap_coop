@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caslsvk3s0tvj"
-path="res://.godot/imported/hidden_iron_3x3_minimal.png-f50fe91d7fb2877ccbfb96c73fbbf166.ctex"
+uid="uid://dr45h8y82hlyd"
+path="res://.godot/imported/mage_temp.png-f4a6ec3570ebb5bce9579f4107ba573d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hidden_iron_3x3_minimal.png"
-dest_files=["res://.godot/imported/hidden_iron_3x3_minimal.png-f50fe91d7fb2877ccbfb96c73fbbf166.ctex"]
+source_file="res://assets/placeholders/mage_temp.png"
+dest_files=["res://.godot/imported/mage_temp.png-f4a6ec3570ebb5bce9579f4107ba573d.ctex"]
 
 [params]
 
