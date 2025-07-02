@@ -4,6 +4,9 @@ extends Node
 @export var multiplayer_menu: MultiplayerMenu
 
 func _ready():
+	# DEVELOPMENT ONLY - Set which window to play the game
+	DisplayServer.window_set_current_screen(1)
+
 	# Connect to multiplayer menu signals
 	multiplayer_menu.host_pressed.connect(on_host_pressed)
 	multiplayer_menu.join_pressed.connect(on_join_pressed)

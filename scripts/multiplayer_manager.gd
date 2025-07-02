@@ -1,6 +1,6 @@
 extends Node
 
-var server_ip: String = "127.0.0.1"
+var server_ip: String = "192.168.191.244"
 var server_port: int = 8080
 
 var fighter_parent: Node2D
@@ -15,6 +15,24 @@ func become_host() -> int:
 	server_peer.create_server(server_port)
 	multiplayer.multiplayer_peer = server_peer
 	Logger.log("Host server created")
+	Logger.log(str("Host created at: " + server_ip + ":" + str(server_port)))
+	
+	# var a = IP.get_local_addresses()
+	# print(a)
+
+	var ip_address :String
+
+	if OS.has_feature("windows"):
+		if OS.has_environment("COMPUTERNAME"):
+			ip_address =  IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),IP.TYPE_IPV4)
+	# elif OS.has_feature("x11"):
+	# 	if OS.has_environment("HOSTNAME"):
+	# 		ip_address =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),IP.TYPE_IPV4)
+	# elif OS.has_feature("OSX"):
+	# 	if OS.has_environment("HOSTNAME"):
+	# 		ip_address =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),IP.TYPE_IPV4)
+
+	print("ip_address: ", ip_address)
 
 	# Signals
 	multiplayer.peer_connected.connect(spawn_player)
