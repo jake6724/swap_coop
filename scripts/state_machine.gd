@@ -6,7 +6,6 @@ extends Node
 @export var player: Player
 @export var initial_state: State
 var current_state: State
-var current_state_name: String
 var states: Dictionary[String, State] = {}
 
 # TODO: This needs to work on client; animations not replicating
@@ -18,8 +17,10 @@ func on_player_ready():
 	# Initialize and store all child states
 	var children: Array = get_children()
 	for s in children:
+		print(s.name.to_lower())
 		states[s.name.to_lower()] = s
 		s.player = player
+		s.init_state_universal()
 		s.init_state()
 		s.transition_state.connect(transition)
 
@@ -31,9 +32,9 @@ func on_player_ready():
 	else:
 		push_error("initial_state not set; assign in the editor.")
 
+@rpc("call_remote")
 func sync_state(state_name: String):
-	current_state_name = state_name
-	current_state = states[current_state_name]
+	current_state = states[state_name]
 
 func _process(_delta):
 	if current_state:

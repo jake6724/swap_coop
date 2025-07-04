@@ -3,6 +3,7 @@ extends Player
 
 # Child nodes
 @onready var ap: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
 
 @export var fighter_id :=1:
 	set(id):
@@ -17,6 +18,10 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var speed: float = 200.0
 var jump_velocity: float = 500.0
 
+# combat
+var forward_attack = false
+var up_attack = false
+
 # Uses the ready function in parent 'player' for now...
 
 func apply_movement_from_input(delta):
@@ -28,8 +33,10 @@ func apply_movement_from_input(delta):
 	direction = %InputSynchronizer.input_direction
 	# direction = Input.get_axis("move_left", "move_right")
 	if direction > 0.0:
+		sprite.flip_h = false
 		velocity.x = speed
 	elif direction < 0.0:
+		sprite.flip_h = true
 		velocity.x = -speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
